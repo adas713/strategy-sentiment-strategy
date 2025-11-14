@@ -46,7 +46,7 @@ def calculate_rsi(data, window=3):
     avg_loss = loss.rolling(window=window, min_periods=window).mean()
 
     # avoid division by zero
-    rs = avg_gain / avg_loss.replace(0, np.nan)
+    rs = avg_gain / avg_loss.replace(0, 1e-10)
 
     rsi = 100 - (100 / (1 + rs))
     return rsi
