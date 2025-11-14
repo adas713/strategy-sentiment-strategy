@@ -40,11 +40,69 @@ def calculate_rsi(data, window=14):
 
 
 # Example market data (replace with real-time data)
-market_data = {
-    'SPY': {'price': 683, 'change': 0.23},
-    'QQQ': {'price': 621.57, 'change': -0.27},
-    'AAPL': {'price': 275.25, 'change': 2.16}
-}
+# market_data = {
+#     'SPY': {'price': 683, 'change': 0.23},
+#     'QQQ': {'price': 621.57, 'change': -0.27},
+#     'AAPL': {'price': 275.25, 'change': 2.16}
+# }
+
+market_data = [
+    {
+        "low": 247.47,
+        "high": 251.82,
+        "open": 249.485,
+        "close": 249.34,
+        "symbol": "AAPL",
+        "volume": 33893611,
+        "timestamp": "2025-10-15T04:00:00.000Z",
+        "transactions": 528880,
+        "volumeWeightedPrice": 249.5813
+    },
+    {
+        "low": 245.13,
+        "high": 249.04,
+        "open": 248.25,
+        "close": 247.45,
+        "symbol": "AAPL",
+        "volume": 39776974,
+        "timestamp": "2025-10-16T04:00:00.000Z",
+        "transactions": 616258,
+        "volumeWeightedPrice": 247.354
+    },
+    {
+        "low": 247.27,
+        "high": 253.38,
+        "open": 248.02,
+        "close": 252.29,
+        "symbol": "AAPL",
+        "volume": 49146961,
+        "timestamp": "2025-10-17T04:00:00.000Z",
+        "transactions": 634830,
+        "volumeWeightedPrice": 250.7598
+    },
+    {
+        "low": 255.63,
+        "high": 264.375,
+        "open": 255.885,
+        "close": 262.24,
+        "symbol": "AAPL",
+        "volume": 90483029,
+        "timestamp": "2025-10-20T04:00:00.000Z",
+        "transactions": 1160822,
+        "volumeWeightedPrice": 261.7003
+    },
+    {
+        "low": 261.83,
+        "high": 265.29,
+        "open": 261.88,
+        "close": 262.77,
+        "symbol": "AAPL",
+        "volume": 46695748,
+        "timestamp": "2025-10-21T04:00:00.000Z",
+        "transactions": 714945,
+        "volumeWeightedPrice": 263.4176
+    }
+]
 
 
 def run_sentiment_rsi_strategy():
