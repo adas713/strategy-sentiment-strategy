@@ -30,11 +30,24 @@ def get_sentiment_score(symbol):
 
 
 # Function to calculate RSI
-def calculate_rsi(data, window=14):
+def calculate_rsi(data, window=3):
+    # delta = data['close'].diff()
+    # gain = (delta.where(delta > 0, 0)).rolling(window=window).mean()
+    # loss = (-delta.where(delta < 0, 0)).rolling(window=window).mean()
+    # rs = gain / loss
+    # rsi = 100 - (100 / (1 + rs))
+    # return rsi
     delta = data['close'].diff()
-    gain = (delta.where(delta > 0, 0)).rolling(window=window).mean()
-    loss = (-delta.where(delta < 0, 0)).rolling(window=window).mean()
-    rs = gain / loss
+
+    gain = delta.clip(lower=0)
+    loss = -delta.clip(upper=0)
+
+    avg_gain = gain.rolling(window=window, min_periods=window).mean()
+    avg_loss = loss.rolling(window=window, min_periods=window).mean()
+
+    # avoid division by zero
+    rs = avg_gain / avg_loss.replace(0, np.nan)
+
     rsi = 100 - (100 / (1 + rs))
     return rsi
 
@@ -122,6 +135,7 @@ def run_sentiment_rsi_strategy():
         client.execution.use_broker(BROKER, environment=BROKER_ENVIRONMENT)
 
     orders = []
+    print(market_data)
 
     # Strategy implementation
     for symbol, data in market_data.items():
